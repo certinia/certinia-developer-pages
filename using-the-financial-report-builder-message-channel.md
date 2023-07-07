@@ -1,5 +1,6 @@
 ---
 permalink: /using-the-financial-report-builder-message-channel
+layout: page
 ---
 
 # Using the Financial Report Builder Message Channel
