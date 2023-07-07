@@ -1,8 +1,6 @@
 ---
 layout: default
 ---
-![Certinia](/assets/images/certinia-logo-1.svg) for developers
-
 ## Certinia Product Resources
 
 **[Technical Pack](https://help.financialforce.com/TechnicalReference/2023.2/Default.htm)**
