@@ -12,16 +12,16 @@ For more information about message channels, see the Salesforce Help.
 
 ## Publishing To Message Channels
 
-To publish a message on a message channel, include a lightning:messageChannel component in your Aura component and use the publish() method in your Aura component's controller file. For more information, see the Salesforce Help.
+To publish a message on a message channel, include a `lightning:messageChannel` component in your Aura component and use the `publish()` method in your Aura component's controller file. For more information, see the Salesforce Help.
 
 When publishing a message on the FRB External Filters message channel, you must specify the following variables:
 
-- filterID (the ID of the filter you are setting)
-- filterJson (contains the definition of the filter you want to apply)
+- `filterID` (the ID of the filter you are setting)
+- `filterJson` (contains the definition of the filter you want to apply)
 
 For example:
 
-```json
+```
 {
   filterId: "any key text",
   filterJson: "{ ... }" //a string that conforms to the schema
@@ -34,7 +34,7 @@ For example:
 
 Below is an example company name filter for the Financial Transactions dataset.
 
-```json
+```
 {
   fieldApiName: "CompanyName",             // field name
   datasetApiName: "FinancialTransactions", // dataset api name in analytics
