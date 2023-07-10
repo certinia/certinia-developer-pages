@@ -11,6 +11,10 @@ Explore our product API documentation, managed permission sets, and packaged obj
 
 The place to connect with fellow users, ask questions, share ideas, and more!
 
+## Technical Articles
+
+[Using the Financial Report Builder Message Channel](using-the-financial-report-builder-message-channel.md)
+
 # Certinia Open Source Projects
 
 ## [github.com/certinia](https://github.com/certinia)
