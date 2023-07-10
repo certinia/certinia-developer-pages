@@ -1,5 +1,5 @@
 ---
-permalink: /using-the-financial-report-builder-message-channel
+permalink: /using-the-financial-report-builder-message-channel/
 layout: page
 ---
 

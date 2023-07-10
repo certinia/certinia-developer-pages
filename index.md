@@ -13,7 +13,7 @@ The place to connect with fellow users, ask questions, share ideas, and more!
 
 ## Technical Articles
 
-[Using the Financial Report Builder Message Channel](using-the-financial-report-builder-message-channel.md)
+[Using the Financial Report Builder Message Channel](/using-the-financial-report-builder-message-channel/)
 
 # Certinia Open Source Projects
 
