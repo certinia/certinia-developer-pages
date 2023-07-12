@@ -3,13 +3,14 @@ layout: home
 ---
 # Certinia Product Resources
 
-## [Technical Pack](https://help.financialforce.com/TechnicalReference/2023.2/Default.htm)
+## Technical Pack
 
-Explore our product API documentation, managed permission sets, and packaged objects.
+Explore our product API documentation, managed permission sets, and packaged objects in the [Certinia Technical Pack](https://help.financialforce.com/TechnicalReference/2023.2/Default.htm).
 
-## [Certinia Community](https://erp.force.com/community/login)
 
-The place to connect with fellow users, ask questions, share ideas, and more!
+## Certinia Community
+
+The [Certinia Community](https://erp.force.com/community/login) is the place to connect with fellow users, ask questions, share ideas, and more!
 
 ## Technical Articles
 
