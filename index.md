@@ -15,6 +15,8 @@ The place to connect with fellow users, ask questions, share ideas, and more!
 
 [Using the Financial Report Builder Message Channel](/using-the-financial-report-builder-message-channel/)
 
+[Create Project from Template API - Opportunity Product Automation](/create-project-from-template-api-opportunity-product/)
+
 # Certinia Open Source Projects
 
 ## [github.com/certinia](https://github.com/certinia)
