@@ -20,6 +20,8 @@ The [Certinia Community](https://erp.force.com/community/login) is the place to 
 
 [Create Project from Template API - Global Action Button](/create-project-from-template-api-global-action-button/)
 
+[Create Project from Template API - Working with Custom Objects](/create-project-from-template-api-custom-objects/)
+
 # Certinia Open Source Projects
 
 ## [github.com/certinia](https://github.com/certinia)
