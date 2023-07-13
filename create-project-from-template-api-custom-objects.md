@@ -31,11 +31,11 @@ Consider that your company has a custom object named 'Checklist Items' which has
 
 The following screenshot shows some of an example template and its Project Phases.
 
-![001](/assets/images/create-project-from-template-api-custom-objects/001.jpg)
+![an example template and its Project Phases](/assets/images/create-project-from-template-api-custom-objects/001.jpg)
 
 Clicking one of the Project Phases takes you to its detail page and here are its Checklist Items in the related tab.
 
-![002](/assets/images/create-project-from-template-api-custom-objects/002.jpg)
+![Checklist Items in the related tab](/assets/images/create-project-from-template-api-custom-objects/002.jpg)
 
 ## Implementation
 
@@ -134,11 +134,11 @@ You want to copy over Materials and its fields along with the Checklist Items yo
 
 The following screenshot shows a template and its Materials
 
-![003](/assets/images/create-project-from-template-api-custom-objects/003.jpg)
+![a template and its Materials](/assets/images/create-project-from-template-api-custom-objects/003.jpg)
 
 The Material Page is shown below
 
-![004](/assets/images/create-project-from-template-api-custom-objects/004.jpg)
+![The Material Page](/assets/images/create-project-from-template-api-custom-objects/004.jpg)
 
 ## Implementation
 
