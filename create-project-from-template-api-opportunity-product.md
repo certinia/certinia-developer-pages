@@ -16,9 +16,11 @@ Warning: Asynchronous code has its own risks and rewards, especially when used i
 
 ## Implementation
 
-1. Add a custom field to the Product object. Make it a lookup to the Project object and call it ‘Project_Template__c’.
-2. Add a validation rule ‘Project_Template__r.pse__Is_Template__c = False’, so that a non-template can’t be linked in this field.
-3. Create our class that calls the Create Project from Template Service:
+1\. Add a custom field to the Product object. Make it a lookup to the Project object and call it ‘Project_Template__c’.
+
+2\. Add a validation rule ‘Project_Template__r.pse__Is_Template__c = False’, so that a non-template can’t be linked in this field.
+
+3\. Create our class that calls the Create Project from Template Service:
 
 ````
 public class CPFT {
@@ -59,7 +61,7 @@ public class CPFT {
 }
 ````
 
-4. Create a second class that implements the Queueable interface:
+4\. Create a second class that implements the Queueable interface:
 
 ````
 public with sharing class QueueCPFT implements Queueable{
@@ -82,7 +84,7 @@ public with sharing class QueueCPFT implements Queueable{
 }
 ````
 
-5. Create the Apex trigger is given below:
+5\. Create the Apex trigger is given below:
 
 ````
 trigger CPFT_on_OPP_status on Opportunity (after update) {
