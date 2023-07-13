@@ -11,7 +11,7 @@ Our Version Service API allows you to create versions of Projects. It’s import
 Sample Scenario: Project Versions on Approved Milestones
 
 When a Milestone is approved, it usually signifies an important or big step for a Project. This marks a good point for when Project versions should be created. You can do this by using the Process Builder on Milestone whenever its status is changed to 'Approved'.
-‘’
+
 ## Implementation
 
 1\. Create an Apex class with a invocable method that calls our Version Service API:
