@@ -14,8 +14,9 @@ You can add a default button to any object layout that enables users to create p
 
 ## Implementation
 
-1. Add a lookup field from Case to Project named ‘Project_Template__c’. Use the lookup filter: ‘Project Template: Template EQUALS True’.
-2. Create an Apex class that we will use as a controller with this code:
+1\. Add a lookup field from Case to Project named ‘Project_Template__c’. Use the lookup filter: 'Project Template: Template EQUALS True'.
+
+2\. Create an Apex class that we will use as a controller with this code:
 
 ````
 public class SimpleCPFTController {
@@ -71,7 +72,7 @@ public class SimpleCPFTController {
 }
 ````
 
-3. Create a Visualforce page to call the Apex controller created above. Use “CreateProjectForCase” for the name
+3\. Create a Visualforce page to call the Apex controller created above. Use “CreateProjectForCase” for the name
 
 ````
 <apex:page standardController="Case" extensions="SimpleCPFTController">
@@ -90,11 +91,11 @@ public class SimpleCPFTController {
     </apex:pageBlock>
 </apex:page>
 ````
-4. Create a Detail Page button to call our Visualforce page. Make sure the Content Source is 'Visualforce Page' and the Content is the 'CreateProjectForCase' page we just made.
+4\. Create a Detail Page button to call our Visualforce page. Make sure the Content Source is 'Visualforce Page' and the Content is the 'CreateProjectForCase' page we just made.
 
 ![Create a Detail Page button](/assets/images/create-project-from-template-api-global-action-button/001.jpg)
 
-5. Add the Detail Page button to the Case object page layout.
+5\. Add the Detail Page button to the Case object page layout.
 
 ![Add the Detail Page button to the Case object page layout](/assets/images/create-project-from-template-api-global-action-button/002.jpg)
 
@@ -133,7 +134,8 @@ We use an Apex controller extension on the Visualforce page. It has the followin
 1. We retrieve the case record when the page is loaded.
 2. It has two properties to bind data between the three input fields on the Visualforce page and the apex code: ‘myCase’ and ‘inputProj’.
 3. It has an Apex method, ‘createProject’. When you press the button on the Visualforce page it calls this method, which in turn calls the Create Project from Template Service to create our project and then redirects you to the newly created project page.
-4. Finally, all Apex code deserves some unit tests which is required on the Salesforce platform.
+
+Finally, all Apex code deserves some unit tests which is required on the Salesforce platform.
 
 ````
 @isTest
@@ -299,11 +301,11 @@ public class SimpleCPFTController {
 
 Once we’ve added the field to Project, we just need to change the code a little bit and the CPFT API can start populating it. Let’s look at the changes we made in this code.
 
-All the changes are in the Request object that we pass into the API. (We’ve also extracted the code that makes the request into a new method to make it easier to follow.) The request is how we tell the API everything it needs to know to make our projects ‘just right’. Here we added a SObjectCloneMapper.Field for the Case field on Project. And told it to set it to the Id of the Case we are working with. We then need to put that ‘FieldMapper’ in a set and link it to the Project object, and we are done.
+All the changes are in the Request object that we pass into the API. (We’ve also extracted the code that makes the request into a new method to make it easier to follow.) The request is how we tell the API everything it needs to know to make our projects 'just right'. Here we added a SObjectCloneMapper.Field for the Case field on Project. And told it to set it to the Id of the Case we are working with. We then need to put that ‘FieldMapper’ in a set and link it to the Project object, and we are done.
 
 ## Unit tests
 
-We just need up update the one ‘happy path’ test to check we are setting the Case field.
+We just need up update the one 'happy path' test to check we are setting the Case field.
 
 ````
 @isTest static void testButton() {
