@@ -18,6 +18,8 @@ The [Certinia Community](https://erp.force.com/community/login) is the place to 
 
 [Create Project from Template API - Opportunity Product Automation](/create-project-from-template-api-opportunity-product/)
 
+[Create Project from Template API - Global Action Button](/create-project-from-template-api-global-action-button/)
+
 # Certinia Open Source Projects
 
 ## [github.com/certinia](https://github.com/certinia)
