@@ -28,6 +28,8 @@ The [Certinia Community](https://erp.force.com/community/login) is the place to 
 
 [Accounting Direct Transaction API](/accounting-direct-transaction-api/)
 
+[Accounting Payments Plus API](/accounting-payments-plus-api/)
+
 # Certinia Open Source Projects
 
 ## [github.com/certinia](https://github.com/certinia)
