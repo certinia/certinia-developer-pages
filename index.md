@@ -24,6 +24,8 @@ The [Certinia Community](https://erp.force.com/community/login) is the place to 
 
 [Version Service API - Versioning on Milestone Status](/version-service-api-milestone-status/)
 
+[Version Service API - Scheduled Versioning](/version-service-api-scheduled-versioning/)
+
 # Certinia Open Source Projects
 
 ## [github.com/certinia](https://github.com/certinia)
