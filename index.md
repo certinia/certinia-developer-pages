@@ -26,6 +26,8 @@ The [Certinia Community](https://erp.force.com/community/login) is the place to 
 
 [Version Service API - Scheduled Versioning](/version-service-api-scheduled-versioning/)
 
+[Accounting Direct Transaction API](/accounting-direct-transaction-api/)
+
 # Certinia Open Source Projects
 
 ## [github.com/certinia](https://github.com/certinia)
