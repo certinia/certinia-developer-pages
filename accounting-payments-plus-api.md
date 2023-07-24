@@ -30,7 +30,7 @@ The steps needed to process a payment are listed in order:
 
 We describe below each of the previous steps based on what users see when they use the application, and the API method(s) that corresponds to the different pages.
 
-## Creating New Payment Plus
+## Creating New Payment
 
 The creation of a payment using Payments Plus can be seen in the following image. All the fields are mandatory, except the dimensions.
 
