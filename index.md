@@ -30,6 +30,8 @@ The [Certinia Community](https://erp.force.com/community/login) is the place to 
 
 [Accounting Payments Plus API](/accounting-payments-plus-api/)
 
+[Pluggable Triggers](/plugable-triggers/)
+
 # Certinia Open Source Projects
 
 ## [github.com/certinia](https://github.com/certinia)
