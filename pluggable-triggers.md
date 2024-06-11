@@ -203,7 +203,3 @@ We recommend against using pluggable and non-pluggable triggers on the same SObj
 | pse__Region__c                        | 2             | ffpsai.RegionsConstructor                              |
 | pse__Practice__c                      | 2             | ffpsai.PracticesConstructor                            |
 | pse__Grp__c                           | 2             | ffpsai.GroupsConstructor                               |
-
-## Disabling a trigger
-
-Individual trigger plugins may be disabled via their FDN Plugin custom metadata record. Certinia trigger plugins use protected custom metadata records and cannot be disabled.
