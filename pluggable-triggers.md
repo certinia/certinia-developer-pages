@@ -1,5 +1,5 @@
 ---
-permalink: /plugable-triggers/
+permalink: /pluggable-triggers/
 layout: page
 ---
 # Pluggable Triggers
