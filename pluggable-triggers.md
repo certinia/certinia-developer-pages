@@ -10,6 +10,8 @@ The Pluggable Trigger framework (Foundations Winter ‘23 onwards) enables multi
 
 The fferpcore.PluggableTrigger class is invoked by the single apex trigger and searches for corresponding fferpcore__Plugin__mdt records. The plugin record defines: a trigger plugin to instantiate, the SObject it should be applied to, and an order number.
 
+The information and code snippets provided below apply to the most recent Foundations package.
+
 ## Adding a Pluggable Trigger
 
 1. Create the trigger implementation.
