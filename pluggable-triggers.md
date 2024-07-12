@@ -167,6 +167,17 @@ A custom metadata record (on the FDN Plugin type) effectively registers your tri
 
 The Plugin Number field (fferpcore__PluginNumber__c) on the FDN Plugin custom metadata type (fferpcore__Plugin__mdt) controls the order that the triggers are executed. Any integer value can be used (including negative values); they can also be non-continuous (e.g., 1, 5, 15). If the same value is used multiple times then the triggers with that value will be executed in any order (e.g., for 1, 2, 2, 3 the two triggers with ‘2’ will have a non-deterministic order but they execute after ‘1’ and before ‘3’).
 
+## CRUD Security Checks
+
+The Pluggable Trigger implementation inherits from `fflib_SObjectDomain` which, like its open source version, defaults to performing CRUD security checks for the operation performed.
+This behavior cannot currently be overridden. A future release of the new `runTriggerHandler()` method will remove this behavior to allow separation of plugin and security concerns.
+
+Many use cases may prefer security to be the responsibility of the original caller of the database operation. All Salesforce native database operations act in this manner,
+as does Apex code working in USER Mode and Apex code that performs security checks at the service layer. Moving security
+to the service layer allows for system mode use cases. Such use cases are prevented when a trigger handler performs security checks.
+
+If you are developing trigger plugins now then be aware that CRUD checks will be performed by Pluggable Trigger. If you use the new `runTriggerHandler()` method you cannot rely on these checks in future versions.
+
 ## Existing Pluggable Triggers
 
 The Pluggable Trigger Framework is used by multiple Certinia packages. If you are adding a trigger to a Certinia SObject or a standard object, we recommend that you choose a plugin number which is 100 or higher; this avoids conflicts or invalid data. New Certinia releases may add pluggable triggers to other SObjects, which may still result in conflict. 
