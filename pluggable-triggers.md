@@ -103,7 +103,13 @@ trigger BillingDocumentTrigger on fferpcore__BillingDocument__c(
    after delete,
    after undelete
 ) {
-   fferpcore.PluggableTrigger.runTriggerHandler();
+   try {
+       fferpcore.PluggableTrigger.runTriggerHandler();
+   } catch (Exception e) {
+       for (SObject record : Trigger.new != null ? Trigger.new : Trigger.old) {
+           record.addError(e);
+       }
+   }
 }
 ````
 
