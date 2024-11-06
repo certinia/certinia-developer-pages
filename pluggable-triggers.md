@@ -91,7 +91,7 @@ global class TriggerNameConstructor
 
 3. Add an Apex Trigger for the target SObject (can be skipped if the SObject already uses the pluggable trigger framework).
 
-This trigger should invoke the construct() method on the fferpcore.PluggableTrigger.Constructor() class, which will find all the corresponding trigger plugins and execute them in order. The methods on the fferpcore.PluggableTrigger instance this returns should be invoked accordingly. We recommend covering all operation types even if they are not required yet to avoid confusion in the future. You do not need to add an Apex Trigger if one already exists on this SObject, either in a Certinia managed package or unmanaged on your org. See the list of existing Certinia pluggable triggers. 
+This trigger should invoke fferpcore.PluggableTrigger.runTriggerHandler(), which will find all the corresponding trigger plugins and execute them in order. You do not need to add an Apex Trigger if one already exists on this SObject, either in a Certinia managed package or unmanaged on your org. See the list of existing Certinia pluggable triggers. 
 
 ````
 trigger BillingDocumentTrigger on fferpcore__BillingDocument__c(
@@ -103,47 +103,10 @@ trigger BillingDocumentTrigger on fferpcore__BillingDocument__c(
    after delete,
    after undelete
 ) {
-   List<SObject> records;
-
-
-   switch on Trigger.operationType {
-       when BEFORE_DELETE, AFTER_DELETE {
-           records = Trigger.old;
-       }
-       when else {
-           records = Trigger.new;
-       }
-   }
-
-
    try {
-       fferpcore.PluggableTrigger target = 
-              new fferpcore.PluggableTrigger.Constructor()
-                     .construct(records);
-
-
-       switch on Trigger.operationType {
-           when BEFORE_INSERT {
-               target.onBeforeInsert();
-           }
-           when AFTER_INSERT {
-               target.onAfterInsert();
-           }
-           when BEFORE_UPDATE {
-               target.onBeforeUpdate(Trigger.oldMap);
-           }
-           when AFTER_UPDATE {
-               target.onAfterUpdate(Trigger.newMap);
-           }
-           when BEFORE_DELETE {
-               target.onBeforeDelete();
-           }
-           when AFTER_DELETE {
-               target.onAfterDelete();
-           }
-       }
+       fferpcore.PluggableTrigger.runTriggerHandler();
    } catch (Exception e) {
-       for (SObject record : records) {
+       for (SObject record : Trigger.new != null ? Trigger.new : Trigger.old) {
            record.addError(e);
        }
    }
@@ -154,14 +117,16 @@ trigger BillingDocumentTrigger on fferpcore__BillingDocument__c(
 
 A custom metadata record (on the FDN Plugin type) effectively registers your trigger with the Pluggable Trigger Framework. The required fields should be populated according to the table below.
 
-| Field           | Value                                                                                          |
-| --------------- | ---------------------------------------------------------------------------------------------- |
-| Label           | Any suitable label for your trigger.                                                           |
-| FDN Plugin Name | Any suitable name for your trigger.                                                            |
-| Class Name      | The API name of the trigger constructor class (e.g.TriggerNameConstructor from step 2).        |
-| Plugin Number   | Any integer value (e.g., 100). See the Ordering section for more guidance.                     |
-| Extension Point | fferpcore.PluggableTriggerApi.PluginConstructor                                                |
-| Additional Data |The API name of the SObject you are adding the trigger to (e.g. fferpcore__BillingDocument__c). |
+| Field           | Value                                                                                                                                  |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Label           | Any suitable label for your trigger.                                                                                                   |
+| FDN Plugin Name | Any suitable name for your trigger.                                                                                                    |
+| Class Name      | The API name of the trigger constructor class (e.g.TriggerNameConstructor from step 2).                                                |
+| Plugin Number   | Any integer value (e.g., 100). See the Ordering section for more guidance.                                                             |
+| Extension Point | fferpcore.PluggableTriggerApi.PluginConstructor                                                                                        |
+| Additional Data |The API name of the SObject you are adding the trigger to (e.g. fferpcore__BillingDocument__c).                                         |
+| Disabled        |If selected, the plugin is disabled in Foundations.                                                                                     |
+| Deprecated      |If selected, the plugin is deprecated. (This field is a Developer controlled field that allows it to be upgradable in package updates.) |
 
 ## Ordering
 
@@ -169,7 +134,7 @@ The Plugin Number field (fferpcore__PluginNumber__c) on the FDN Plugin custom me
 
 ## Existing Pluggable Triggers
 
-The Pluggable Trigger Framework is used by multiple Certinia packages. If you are adding a trigger to a Certinia SObject or a standard object, we recommend that you choose a plugin number which is 100 or higher; this avoids conflicts or invalid data. New Certinia releases may add pluggable triggers to other SObjects, which may still result in conflict. 
+Multiple Certinia packages use the Pluggable Trigger Framework. If you are adding a trigger to a Certinia SObject or a standard object, we recommend that you choose a plugin number which is 100 or higher; this avoids conflicts or invalid data. New Certinia releases may add pluggable triggers to other SObjects, which may still result in conflict. 
 
 We recommend against using pluggable and non-pluggable triggers on the same SObject where possible. Non-Certinia managed packages may add triggers to standard objects; in this case we can not determine whether the pluggable or non-pluggable triggers will execute first. As of Winter ‘24 the existing Certinia pluggable triggers are listed in the table below.
 
@@ -181,26 +146,7 @@ We recommend against using pluggable and non-pluggable triggers on the same SObj
 | fferpcore__BillingDocumentLineItem__c | -10           | ffbc.BillingDocumentLineItemsConstructor               |
 |                                       | 0             | fferpcore.BillingDocumentLineItems.Constructor         |
 |                                       | 20            | c2g.BillingDocumentLinesConstructor                    |
-| pse__Budget__c                        | 1             | pse.BILL_BudgetTriggerPlugin                           |
-| pse__Expense__c                       | 1             | pse.BILL_ExpenseTriggerPlugin                          |
-| pse__Miscellaneous_Adjustment__c      | 1             | pse.BILL_MiscAdjustmentTriggerPlugin                   |
-| pse__Proj__c                          | 1             | pse.IHC_ProjectTriggerPlugin                           |
-|                                       | 2             | fpsai.ProjectsConstructor                              |
-|                                       | 5             | pse.BILL_ProjectTriggerPlugin                          |
-| pse__Timecard__c                      | 1             | pse.BILL_TimecardTriggerPlugin                         |
-| pse__Assignment__c                    | 1             | pse.UE_AssignmentTriggerPlugin                         |
-|                                       | 2             | pse.IHC_AssignmentTriggerPlugin                        |
-|                                       | 5             | pse.EM_AssignmentTriggerPlugin                         |
-|                                       | 99            | pse.CE_AssignmentTriggerPlugin                         |
-| pse__Project_Task_Assignment__c       | 99            | pse.CE_ProjTaskAssignmentTriggerPlugin                 |
-| pse__Project_Task__c                  | 1             | pse.IHC_ProjectTaskTriggerPlugin                       |
-|                                       | 99            | pse.CE_ProjectTaskTriggerPlugin                        |
-| pse__Milestone__c                     | 1             | pse.BILL_MilestoneTriggerPlugin                        |
-|                                       | 5             | pse.EM_MilestoneTriggerPlugin                          |
-| Contact                               | 1             | pse.UE_ResourceTriggerPlugin                           |
-|                                       | 2             | pse.IHC_ResourceTriggerPlugin                          |
-| pse__Resource_Request__c              | 1             | pse.UE_ResourceRequestTriggerPlugin                    |
-| pse__Schedule__c                      | 1             | pse.UE_ScheduleTriggerPlugin                           |
+| pse__Proj__c                          | 1             | fpsai.ProjectsConstructor                              |
 | ffscpq__Estimate__c                   | 1             | ffscpqint.EstimateTriggerPluginConstructor             |
 | pse__Region__c                        | 2             | ffpsai.RegionsConstructor                              |
 | pse__Practice__c                      | 2             | ffpsai.PracticesConstructor                            |
